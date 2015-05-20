@@ -8,19 +8,20 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by CTC on 2015/5/5.
- */
+
 public class TWAutoLayout {
     public static final int WIDGET_TYPE_TEXT = 1;
     public static final int WIDGET_TYPE_BUTTON = 2;
 
     public static final int WIDTH_WRAP_CONTENT = 0;
+	/* Widget 的宽度为屏幕宽度 */
     public static final int WIDTH_FILL_ONE_ROW = 1;
+	/* Widget 的宽度为屏幕宽度的一半 */
     public static final int WIDTH_FILL_HALF_ROW = 2;
 
     public ArrayList<Widget> widgetList = new ArrayList<>();
 
+	/* 添加 Widget */
     public void addWidget(Widget w) {
         widgetList.add(w);
     }
@@ -40,13 +41,15 @@ public class TWAutoLayout {
         Widget() {
 
         }
-
+		
+		/* 创建 Text Widget */
         public static Widget makeText(String text) {
             Widget w = new Widget(WIDGET_TYPE_TEXT);
             w.text = text;
             return w;
         }
-
+		
+		/* 创建 Button Widget */
         public static Widget makeButton(String text, int id) {
             Widget w = new Widget(WIDGET_TYPE_BUTTON);
             w.text = text;

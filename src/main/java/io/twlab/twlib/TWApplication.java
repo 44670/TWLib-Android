@@ -5,14 +5,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.util.Log;
 
-import com.blue.rmcclient.PadActivity;
-
-import org.json.JSONException;
-
-/**
- * Created by CTC on 2015/5/18.
- */
 public class TWApplication {
+	public static final String TWLIB_VERSION = "1.0";
+	
     Service handlerService;
     String internalName;
     String serviceName;
@@ -24,11 +19,10 @@ public class TWApplication {
     public static final int SDK_CMD_ONBUTTONCLICK = 4;
     public static final int SDK_CMD_REGISTER_APP = 5;
 
+	/* 设置应用的显示名称 */
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
-
-
 
     Intent buildIntent(int cmd) {
         Intent intent = new Intent();
@@ -40,6 +34,7 @@ public class TWApplication {
         return intent;
     }
 
+	/* 向 TWL 管家注册当前应用 */
     public void registerCurrentApplication() {
         Intent intent = buildIntent(SDK_CMD_REGISTER_APP);
         intent.putExtra("displayName", displayName);
@@ -56,18 +51,22 @@ public class TWApplication {
         return false;
     }
 
+	/* 手表端应用激活事件 */
     public void onActivate() {
 
     }
 
+	/* 手表端按钮按下事件 */
     public void onButtonClick(int id) {
 
     }
 
+	/* 手表端应用退出事件 */
     public void onDeactivate() {
 
     }
 
+	/* 更新应用布局 */
     public void updateLayout(TWAutoLayout layout, int focusOnId) {
         Intent intent = buildIntent(SDK_CMD_UPDATE_LAYOUT);
         try {
@@ -82,6 +81,7 @@ public class TWApplication {
 
     }
 
+	/* 处理来自 TWL 管家的 intent */
     public void handleIntent(Intent intent) {
         int cmd = intent.getIntExtra("cmd", 0);
         if (cmd == SDK_CMD_ONACTIVATE) {
